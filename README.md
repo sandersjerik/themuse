@@ -32,4 +32,4 @@ gulp build
 npm start
 ```
 
-Browse to http://localhost:8080/
+Browse to <http://localhost:8080/>
