@@ -15,7 +15,8 @@
     "typescript": "^2.1.5"
   },
   "scripts": {
-    "install": "bower install",
-    "start": "angularserver --dir ./ --file public/index.html"
+    "build": "gulp build",
+    "postinstall": "bower install",
+    "start": "angularserver --dir ./ --file public/index.html --port 8080"
   }
 }
