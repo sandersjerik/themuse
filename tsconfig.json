@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "outFile": "single.js"
+    },
+    "include": [
+        "src/**/*",
+        "node_modules/@types/*/**/*"
+    ]
+}
