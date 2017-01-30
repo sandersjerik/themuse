@@ -1,8 +1,13 @@
 <div class="container">
     <div class="row">
         <div ng-repeat-start="job in vm.jobs" class="col-sm-6 col-md-4 col-lg-3">
-            <h3>{{job.name}}</h3>
-            <h4>{{job.company.name}}</h4>
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>{{job.name}}</h4>
+                    <h5>{{job.company.name}}</h5>
+                    <h6><span ng-repeat="location in job.locations"><span ng-if="!$first">; </span>{{location.name}}</span></h6>
+                </div>
+            </div>
         </div>
         <div class="clearfix visible-lg-block" ng-if="$index % 4 === 3"></div>
         <div class="clearfix visible-md-block" ng-if="$index % 3 === 2"></div>
