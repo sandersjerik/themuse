@@ -1,6 +1,7 @@
 namespace themuse {
     angular.module('themuse', [
         'ngRoute',
-        'themuse.home'
+        'themuse.home',
+        'themuse.api'
     ]);
 }
