@@ -31,3 +31,7 @@ gulp.task('copyhtml', ['clean'], () => {
 gulp.task('clean', () => {
     return del(outputDir);
 });
+
+gulp.task('watch', () => {
+    return gulp.watch('src/**/*', ['build']);
+});
