@@ -6,6 +6,9 @@ namespace themuse.home {
         public loadingMoreJobs: boolean;
         public loadedAllJobs: boolean;
         public company: string;
+        public category: string;
+        public level: string;
+        public location: string;
         private cancelJobsCall: ng.IDeferred<void>;
         private pageNumber: number;
         private lastPageCount: number;
@@ -31,8 +34,11 @@ namespace themuse.home {
             }
             this.loadingMoreJobs = true;
             this.cancelJobsCall = this.$q.defer<void>();
-            const companies: string[] = (this.company == null) ? [] : this.company.split(',').map(c => c.trim());
-            this.museApi.getJobs(this.pageNumber++, [], companies, this.cancelJobsCall.promise).then((response: api.JobResponse) => {
+            const companies: string[] = HomeController.splitByAndTrim(this.company, ',');
+            const categories: string[] = HomeController.splitByAndTrim(this.category, ',');
+            const levels: string[] = HomeController.splitByAndTrim(this.level, ',');
+            const locations: string[] = HomeController.splitByAndTrim(this.location, ';');
+            this.museApi.getJobs(this.pageNumber++, locations, companies, categories, levels, this.cancelJobsCall.promise).then((response: api.JobResponse) => {
                     this.loadingMoreJobs = false;
                     this.jobs = this.jobs.concat(response.results);
                     this.lastPageCount = response.page_count;
@@ -43,6 +49,10 @@ namespace themuse.home {
                     console.log('Error retrieving jobs');
                     console.log(errorResponse);
                 });
+        }
+
+        private static splitByAndTrim(toSplit: string, splitBy: string): string[] {
+            return (toSplit == null || toSplit === '') ? [] : toSplit.split(',').map(c => c.trim());
         }
     }
 

@@ -7,7 +7,12 @@ namespace themuse.api {
         constructor(private $http: ng.IHttpService, private $q: ng.IQService) {
         }
 
-        public getJobs(page: number = 0, locations: string[] = [], companies: string[] = [], cancelPromise?: ng.IPromise<void>): MusePromise<JobResponse> {
+        public getJobs(page: number = 0,
+                       locations: string[] = [],
+                       companies: string[] = [],
+                       categories: string[] = [],
+                       levels: string[] = [],
+                       cancelPromise?: ng.IPromise<void>): MusePromise<JobResponse> {
             let url: string = BASE_URL + 'jobs?api_key=' + API_KEY + '&descending=true';
             url += '&page=' + page;
             for (let location of locations) {
@@ -15,6 +20,12 @@ namespace themuse.api {
             }
             for (let company of companies) {
                 url += '&company=' + encodeURIComponent(company);
+            }
+            for (let category of categories) {
+                url += '&category=' + encodeURIComponent(category);
+            }
+            for (let level of levels) {
+                url += '&level=' + encodeURIComponent(level);
             }
             return this.$http.get<JobResponse>(url, { timeout: cancelPromise })
                     .then((response: ng.IHttpPromiseCallbackArg<JobResponse>) => {

@@ -32,6 +32,6 @@ gulp.task('clean', () => {
     return del(outputDir);
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['build'], () => {
     return gulp.watch('src/**/*', ['build']);
 });
