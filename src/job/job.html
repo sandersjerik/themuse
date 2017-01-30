@@ -1,0 +1,6 @@
+<div class="container">
+    <h1>{{vm.job.name}}</h1>
+    <h2>{{vm.job.company.name}}</h2>
+    <h3><span ng-repeat="location in vm.job.locations"><span ng-if="!$first">; </span>{{location.name}}</span></h3>
+    <div ng-bind-html="vm.job.contents"></div>
+</div>

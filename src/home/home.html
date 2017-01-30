@@ -3,7 +3,7 @@
         <div ng-repeat-start="job in vm.jobs" class="col-sm-6 col-md-4 col-lg-3">
             <div class="thumbnail">
                 <div class="caption">
-                    <h4>{{job.name}}</h4>
+                    <h4><a href="/jobs/{{job.id}}">{{job.name}}</a></h4>
                     <h5>{{job.company.name}}</h5>
                     <h6><span ng-repeat="location in job.locations"><span ng-if="!$first">; </span>{{location.name}}</span></h6>
                 </div>

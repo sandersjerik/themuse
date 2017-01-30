@@ -20,6 +20,16 @@ namespace themuse.api {
                         return this.$q.reject(errorResponse.data);
                     });
         }
+
+        public getJob(id: string | number): MusePromise<Job> {
+            let url: string = BASE_URL + 'jobs/' + id + '?api_key=' + API_KEY;
+            return this.$http.get<Job>(url)
+                    .then((response: ng.IHttpPromiseCallbackArg<Job>) => {
+                        return response.data;
+                    }, (errorResponse: ng.IHttpPromiseCallbackArg<ErrorResponse>) => {
+                        return this.$q.reject(errorResponse.data);
+                    });
+        }
     }
 
     function museApiConfig($http: ng.IHttpService, $q: ng.IQService) {
